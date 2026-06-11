@@ -13,34 +13,23 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import com.example.boxedin.presentation.setup.SetupScreen
 import com.example.boxedin.presentation.session.SessionScreen
+import com.example.boxedin.presentation.session.SessionVM
+import com.example.boxedin.presentation.setup.SetupVM
 import com.example.boxedin.ui.theme.BoxedInTheme
+
 /*
     1. Host Compose
     2. Ask SessionManager for app state
     3. Show SetupScreen OR SessionScreen
  */
-
 class MainActivity : ComponentActivity() {
-    /*
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            BoxedInTheme { // Sets the theme specified in ui.theme
+    private val sessionManager = SessionManager() // dependency for now, later this may be injected
 
-                // Creating a simple Scaffold
-                // Layout for the application
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    SetupScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }*/
+    private val setupVM =
+        SetupVM(sessionManager)
 
-    // dependency for now, later this may be injected
-    private val sessionManager = SessionManager()
+    private val sessionVM =
+        SessionVM(sessionManager)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,13 +46,15 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-
+                    // consider adding APP STATE when more screens are made
                     if (hasSession) {
                         SessionScreen(
+                            sessionVM = sessionVM,
                             modifier = Modifier.padding(innerPadding)
                         )
                     } else {
                         SetupScreen(
+                            setupVM = setupVM,
                             modifier = Modifier.padding(innerPadding)
                         )
                     }

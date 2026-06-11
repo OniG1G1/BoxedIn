@@ -1,4 +1,4 @@
-package com.example.boxedin.data.dataClass
+package com.example.boxedin.domain.model
 
 data class Session(
     val name: String,

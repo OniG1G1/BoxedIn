@@ -1,4 +1,4 @@
-package com.example.boxedin.data.model
+package com.example.boxedin.domain.model
 
 enum class SessionState {
     IDLE,

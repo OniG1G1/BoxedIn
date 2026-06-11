@@ -1,4 +1,8 @@
 package com.example.boxedin.presentation.session
 
-class SessionUiState {
-}
+data class SessionUiState(
+    val sessionName: String,
+    val elapsedMinutes: Int,
+    val completedBoxes: Int,
+    val remainingMinutes: Int
+)
