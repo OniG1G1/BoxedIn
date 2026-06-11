@@ -1,6 +1,6 @@
 package com.example.boxedin.presentation.session
 
-class SetupVM {
+class SessionVM {
     fun getSessionProgress() {}
 
     fun pauseSession() {}

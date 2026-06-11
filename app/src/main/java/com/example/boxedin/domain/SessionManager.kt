@@ -1,6 +1,8 @@
 package com.example.boxedin.domain
 
 import android.R
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /*
     Responsible for:
@@ -9,12 +11,19 @@ import android.R
     - calculating elapsed time
  */
 class SessionManager {
-    fun startSession() {}
-    fun endSession() {}
 
-    fun hasActiveSession() : Boolean {
-        return false;
+    private val _hasActiveSession = MutableStateFlow(false)
+    val hasActiveSession : StateFlow<Boolean> = _hasActiveSession
+
+    fun startSession() {
+        _hasActiveSession.value = true
     }
 
-    fun getProgress() {}
+    fun endSession() {
+        _hasActiveSession.value = false
+    }
+
+    fun getProgress() {
+        // later
+    }
 }

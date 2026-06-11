@@ -1,4 +1,4 @@
-package com.example.boxedin.data.model.dataClass
+package com.example.boxedin.data.dataClass
 
 data class SetupUiState(
     val sessionName: String,
